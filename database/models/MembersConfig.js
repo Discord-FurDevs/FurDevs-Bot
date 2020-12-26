@@ -35,22 +35,6 @@ const MembersConfig = new mongoose.Schema({
     type: Array,
     default: []
   },
-
-  spamScoreFast: {
-    type: Number,
-    default: 0
-  },
-
-  spamScoreSlow: {
-    type: Number,
-    default: 0,
-  },
-
-  spamScoreStamp: {
-    type: String,
-    default: moment().toISOString(true),
-  },
-
   muted: {
     type: Boolean,
     default: false
