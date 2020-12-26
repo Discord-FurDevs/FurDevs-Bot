@@ -1,12 +1,13 @@
 const { MessageEmbed } = require("discord.js")
+const moment = require('moment')
 
-// Joined the Server
-// Badges
-// Reputation
-// Level
-// XP
-// Membership Type ( Regular, Member, Staff )
-
+// TODO: Joined the Server
+// TODO: Badges
+// TODO: Reputation
+// TODO: Level
+// TODO: XP
+// TODO: Membership Type ( Regular, Member, Staff )
+// TODO: Add XP Bar
 
 
 exports.run = async (client, message) => {
@@ -14,10 +15,11 @@ exports.run = async (client, message) => {
     const profile = await message.member.settings()
     const profileCard = new MessageEmbed()
     .setTitle(`Profile Card - ${message.author.username}`)
+    .setAuthor(`${message.author.tag}`, `${message.author.displayAvatarURL({ dynamic: true })}`)
+    .addField("Joined Server Date", `${moment(message.member.joinedAt).format("LLLL")}`)
     .addField("Reputation", `${profile.reps}`)
     .addField("XP", `${profile.XP}`)
     .addField("Level", `${profile.level}`)
-    .addField("Level Meter", ":blue_square::black_large_square::black_large_square::black_large_square::black_large_square::black_large_square: ( You are x% from reaching level x ) ")
     .setColor("#8800FF")
     .setThumbnail(`${message.author.displayAvatarURL({dynamic:true})}`)
     .setFooter(`User ID: ${message.author.id}`)
