@@ -7,6 +7,7 @@ const { MessageEmbed } = require('discord.js')
 exports.run = async (client, message, args) => {
   await message.delete();
   const guildSettings = await message.guild.settings()
+  if(guildSettings.rep)
   if (
     message.member.hasPermission("MANAGE_GUILD") ||
     guildSettings.staffMembers.includes(message.author.id)

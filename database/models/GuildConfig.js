@@ -59,6 +59,11 @@ const GuildConfig = new mongoose.Schema({
     default: false,
   },
 
+  programmingChannels: {
+    type: Array,
+    default: [],
+  },
+
   publicModLogs: {
     type: String,
     default: false,

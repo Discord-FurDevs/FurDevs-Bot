@@ -1,6 +1,8 @@
 const {
     MessageEmbed
 } = require("discord.js")
+const MembersConfig = require('./../database/models/MembersConfig')
+
 
 module.exports = async (client, message) => {
     if (message.author && message.author.id === client.user.id) return;
@@ -26,11 +28,28 @@ module.exports = async (client, message) => {
         await msg.react("✅")
         await msg.react("❌")
         const filter = (reaction, user) => reaction.emoji.name === '✅' || reaction.emoji.name === '❌'  && user.id === message.author.id;
-        await msg.awaitReactions(filter, { time: 15000 }).then((collected) => {
+        await msg.awaitReactions(filter, { time: 15000 }).then(async (collected) => {
             const reaction = collected.first()
             switch(reaction.emoji.name){
                 case '✅':
-                    message.channel.send("Woo") 
+                    const user = message.mentions.users.first()
+                    const settings = await message.guild.members.cache.get(user.id).settings();
+                    let newReps = settings.reps+ 1
+                    console.log(newReps)
+                    await MembersConfig.updateOne({
+                      _id: settings._id
+                    }, {
+                      reps: newReps 
+                    });
+                    const embed = new MessageEmbed()
+                    .setAuthor(`${message.author.username}`, `${message.author.displayAvatarURL({ dynamic: true })}`)
+                    .setTitle(`Given a Rep to ${user.username}!`)
+                    .addField(`Reps Then`, `${settings.reps}`)
+                    .addField(`Reps Now`, `${newReps}`)
+                    .addField(`Continue the Good Work!`, `The more reps you get the more bragging right you'll receive`)
+                    .setThumbnail(`https://cdn.discordapp.com/emojis/732716714072211578.png?v=1`)
+                    .setColor(`#8800FF`)
+                    message.channel.send(embed)
                 case "❌":
                     message.channel.send("Aw qwq What a bummer")
             }
