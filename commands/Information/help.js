@@ -39,7 +39,7 @@ exports.run = async (client, message, args) => {
       if (cmd.help.aliases) {
         embed.addField(
           "Aliases",
-          `\`${prefix}${cmd.help.aliases.join("\`, \`J>")}\``
+          `\`${prefix}${cmd.help.aliases.join("\`, \`>")}\``
         );
       }
 
