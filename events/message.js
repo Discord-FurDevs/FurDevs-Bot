@@ -49,9 +49,9 @@ module.exports = async (client, message) => {
                     .addField(`Continue the Good Work!`, `The more reps you get the more bragging right you'll receive`)
                     .setThumbnail(`https://cdn.discordapp.com/emojis/732716714072211578.png?v=1`)
                     .setColor(`#8800FF`)
-                    message.channel.send(embed)
+                    return message.channel.send(embed)
                 case "❌":
-                    message.channel.send("Aw qwq What a bummer")
+                    return message.channel.send("Aw qwq What a bummer")
             }
         })
         
