@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
         const embed = new MessageEmbed()
         .setAuthor(message.author.username, message.author.displayAvatarURL({dynamic: true}))
         .setTitle(`Withdrawn ${BotSettings.currency} from bank`)
-        .setDescription(`Successfully withdrawn ${args[1]} ${BotSettings.currency} from the bank\n\n**Current balance in bank: ${settings.bankCoins-Number(args[1])}** ${BotSettings.currency}`)
+        .setDescription(`Successfully withdrawn ${args[1]} ${BotSettings.currency} from the bank\n\n**Current balance in bank: ${settings.bankCoins-args[1]}** ${BotSettings.currency}`)
         .setThumbnail("https://cdn.discordapp.com/attachments/707425515945852949/797640590665056277/th.jpg")
         .setColor(`#8800FF`);
         message.channel.send(embed);
@@ -26,7 +26,7 @@ exports.run = async (client, message, args) => {
         const embed = new MessageEmbed()
         .setAuthor(message.author.username, message.author.displayAvatarURL({dynamic: true}))
         .setTitle(`Deposited ${BotSettings.currency} into bank`)
-        .setDescription(`Successfully deposited ${args[1]} ${BotSettings.currency} into the bank\n\n**Current balance in bank: ${settings.bankCoins+Number(args[1])}** ${BotSettings.currency}`)
+        .setDescription(`Successfully deposited ${args[1]} ${BotSettings.currency} into the bank\n\n**Current balance in bank: ${settings.bankCoins+args[1]}** ${BotSettings.currency}`)
         .setThumbnail("https://cdn.discordapp.com/attachments/707425515945852949/797640590665056277/th.jpg")
         .setColor(`#8800FF`);
         message.channel.send(embed);
