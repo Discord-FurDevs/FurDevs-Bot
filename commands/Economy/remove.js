@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
     const embed = new MessageEmbed()
     .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`removed ${BotSettings.currency} from ${user.username}!`)
-    .setDescription(`Successfully removed ${args[1]} ${BotSettings.currency} from ${user.name}`)
+    .setDescription(`Successfully removed ${args[1]} ${BotSettings.currency} from ${user.username}`)
     .setColor(`#8800FF`);
     message.channel.send(embed);
   }else {

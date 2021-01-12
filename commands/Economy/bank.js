@@ -6,7 +6,7 @@ exports.run = async (client, message, args) => {
   await message.delete();
 
   if(args[0] === "withdraw") {
-    if(!isNaN(args[1])) throw new Error("Please specify a valid amount ");
+    if(isNaN(args[1])) throw new Error("Please specify a valid amount ");
     let settings = message.member.settings();
         if(!message.member.removeBank(args[1])) throw new Error(`You don't have enough ${BotSettings.currency} in your Bank! `);
         message.member.add(args[1]);
@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
         .setColor(`#8800FF`);
         message.channel.send(embed);
   }else if(args[0] === "deposit") {
-    if(!isNaN(args[1])) throw new Error("Please specify a valid amount ");
+    if(isNaN(args[1])) throw new Error("Please specify a valid amount ");
     let settings = message.member.settings();
         if(!message.member.remove(args[1])) throw new Error(`You don't have enough ${BotSettings.currency} in your pockets! `);
         message.member.addBank(args[1]);
@@ -43,7 +43,7 @@ exports.run = async (client, message, args) => {
         const embed = new MessageEmbed()
         .setAuthor(message.author.username, message.author.displayAvatarURL({dynamic: true}))
         .setTitle(`Added ${BotSettings.currency} to bank`)
-        .setDescription(`Successfully added ${args[2]} ${BotSettings.currency} to the bank account of ${user.name}\n\n**Current balance in bank: ${settings.bankCoins+Number(args[2])}** ${BotSettings.currency}`)
+        .setDescription(`Successfully added ${args[2]} ${BotSettings.currency} to the bank account of ${user.username}\n\n**Current balance in bank: ${settings.bankCoins+Number(args[2])}** ${BotSettings.currency}`)
         .setThumbnail("https://cdn.discordapp.com/attachments/707425515945852949/797640590665056277/th.jpg")
         .setColor(`#8800FF`);
         message.channel.send(embed);
@@ -59,7 +59,7 @@ exports.run = async (client, message, args) => {
         const embed = new MessageEmbed()
         .setAuthor(message.author.username, message.author.displayAvatarURL({dynamic: true}))
         .setTitle(`Removed ${BotSettings.currency} from bank`)
-        .setDescription(`Successfully removed ${args[2]} ${BotSettings.currency} from the bank account of ${user.name}\n\n**Current balance in bank: ${settings.bankCoins-Number(args[2])}** ${BotSettings.currency}`)
+        .setDescription(`Successfully removed ${args[2]} ${BotSettings.currency} from the bank account of ${user.username}\n\n**Current balance in bank: ${settings.bankCoins-Number(args[2])}** ${BotSettings.currency}`)
         .setThumbnail("https://cdn.discordapp.com/attachments/707425515945852949/797640590665056277/th.jpg")
         .setColor(`#8800FF`);
         message.channel.send(embed);

@@ -11,7 +11,7 @@ exports.run = async (client, message, args) => {
     const embed = new MessageEmbed()
     .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true }))
     .setTitle(`payed ${BotSettings.currency} to ${user.username}!`)
-    .setDescription(`Successfully paid ${args[1]} ${BotSettings.currency} to ${user.name}`)
+    .setDescription(`Successfully paid ${args[1]} ${BotSettings.currency} to ${user.username}`)
     .setColor(`#8800FF`);
     message.channel.send(embed);
   }else {
