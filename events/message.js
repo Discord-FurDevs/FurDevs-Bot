@@ -25,17 +25,26 @@ module.exports = async (client, message) => {
     var commandParts;
 
     console.log(message.content)
-    if(message.content.toLowerCase().includes("thanks") && message.mentions.members){
-        let msg = await message.channel.send("Would you like to give a rep to this user")
+    if(message.content.toLowerCase().includes("thank") && message.mentions.members.first()){
+        const user = message.mentions.users.first()
+        const settings = await message.guild.members.cache.get(user.id).settings();
+        if(user.id === message.author.id){
+            return message.channel.send("https://cdn.discordapp.com/attachments/731523552636829697/797940845496107018/cover1.png\n\n⬇️ This is you")
+        }else if(user.bot){
+            return message.channel.send("https://thumbs.dreamstime.com/z/d-robot-wins-gold-cup-trophy-render-holding-66567644.jpg\n\nThe Bot Appreciates it's success")
+        }
+        let msg = await message.channel.send(`Would you like to give a rep \`${user.username}\``)
         await msg.react("✅")
         await msg.react("❌")
-        const filter = (reaction, user) => reaction.emoji.name === '✅' || reaction.emoji.name === '❌'  && user.id === message.author.id;
-        await msg.awaitReactions(filter, { time: 15000 }).then(async (collected) => {
+        let collected = await msg.awaitReactions((r, u) => r.emoji.name == "✅" || r.emoji.name == "❌" && u.id == message.author.id, {
+            max: 1,
+            time: 20000,
+            errors: ['time']
+        })
+        
             const reaction = collected.first()
             switch(reaction.emoji.name){
                 case '✅':
-                    const user = message.mentions.users.first()
-                    const settings = await message.guild.members.cache.get(user.id).settings();
                     let newReps = settings.reps+ 1
                     console.log(newReps)
                     await MembersConfig.updateOne({
@@ -55,8 +64,9 @@ module.exports = async (client, message) => {
                 case "❌":
                     return message.channel.send("Aw qwq What a bummer")
             }
-        })
+        }
         
+
     }
 
     // Money generation
@@ -87,25 +97,24 @@ module.exports = async (client, message) => {
                 try {
                     await cmd.run(client, message, commandParts);
                 } catch (e) {
-                    try {
-                        const errorMessage = new MessageEmbed()
+                        try {
+                            const errorMessage = new MessageEmbed()
                             .setTitle("❌ An Error has Occured!")
                             .setThumbnail(
                                 `https://cdn.discordapp.com/emojis/604486986170105866.png?v=1`
-                            )
-                            .setDescription(`\`${command}\` failed to execute with this error \n\n${e.message}\n\u200b`)
-                            .setColor("#ee110f")
-                        console.log(`${client.fdevsError}: ${command} was executed but failed with an error;\n${e}`)
-                        return message.channel.send(errorMessage)
-                    } catch {
-                        console.log(`${client.fdevsError}: ${command} was executed but failed with an error;\n${e}`)
-                        return;
+                                )
+                                .setDescription(`\`${command}\` failed to execute with this error \n\n${e.message}\n\u200b`)
+                                .setColor("#ee110f")
+                                console.log(`${client.fdevsError}: ${command} was executed but failed with an error;\n${e}`)
+                                return message.channel.send(errorMessage)
+                            } catch {
+                                console.log(`${client.fdevsError}: ${command} was executed but failed with an error;\n${e}`)
+                                return;
+                            }
+                        }
                     }
+                    console.log(`Discord: Command Executed: ${command} by ${message.author.tag}`)
+                    
                 }
             }
-            console.log(`Discord: Command Executed: ${command} by ${message.author.tag}`)
-
-        }
-    }
-};
 

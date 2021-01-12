@@ -48,7 +48,7 @@ const MembersConfig = new mongoose.Schema({
   notes: {
     type: Array,
     default: []
-  }
+  },
 })
 
 module.exports = mongoose.model("MembersConfig", MembersConfig)

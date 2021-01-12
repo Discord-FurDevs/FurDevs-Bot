@@ -7,7 +7,6 @@ const { MessageEmbed } = require('discord.js')
 exports.run = async (client, message, args) => {
   await message.delete();
   const guildSettings = await message.guild.settings()
-  if(guildSettings.rep)
   if (
     message.member.hasPermission("MANAGE_GUILD") ||
     guildSettings.staffMembers.includes(message.author.id)
@@ -23,6 +22,7 @@ exports.run = async (client, message, args) => {
         throw new Error("That's not a number!")
       }
     }
+    console.log("Made it here")
     var user = await usernameResolver(message, args[0]);
     var repsAdd = parseInt(args[1]);
     var settings = await message.guild.members.cache.get(user.id).settings();
@@ -38,7 +38,7 @@ exports.run = async (client, message, args) => {
   }
   const embed = new MessageEmbed()
   .setAuthor(`${message.author.username}`, `${message.author.displayAvatarURL({ dynamic: true })}`)
-  .setTitle(`Added a ${repsAdd} Reps to ${user.username}!`)
+  .setTitle(`Added a ${repsAdd} Reps to ${user}!`)
   .addField(`Reps Then`, `${settings.reps}`)
   .addField(`Reps Now`, `${newReps}`)
   .setThumbnail(`https://cdn.discordapp.com/emojis/787443295973539850.png?v=1`)

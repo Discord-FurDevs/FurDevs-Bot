@@ -68,7 +68,7 @@ exports.run = async (client, message, args) => {
     const embed = new MessageEmbed()
     .setAuthor(message.author.username, message.author.displayAvatarURL({dynamic: true}))
     .setTitle(`Bank account of ${message.author.username}`)
-    .setDescription(`The current balance in your account is **${settings.bankCoins}** ${BotSettings.currency}\n\nUser >bank withdraw [amount]< or >bank deposit [amount]< to withdraw or deposit ${BotSettings.currency} into your bank\n\n${BotSettings.currency} that is in your bank account cant be stolen from other Users!`)
+    .setDescription(`The current balance in your account is **${settings.bankCoins ? settings.bankCoins : "0"}** ${BotSettings.currency}\n\nUser \`>bank withdraw [amount]\` or \`>bank deposit [amount]\` to withdraw or deposit ${BotSettings.currency} into your bank\n\n${BotSettings.currency} that is in your bank account cant be stolen from other Users!`)
     .setThumbnail("https://cdn.discordapp.com/attachments/707425515945852949/797640590665056277/th.jpg")
     .setColor(`#8800FF`);
     message.channel.send(embed);
