@@ -73,7 +73,7 @@ Structures.extend("GuildMember", (GuildMember) => {
         await MembersConfig.updateOne({
           _id: settings._id
         }, {
-          coins: (settings.bankCoins-amount).toPrecision(4)
+          bankCoins: (settings.bankCoins-amount).toPrecision(4)
         });
         return true;
       }else {
@@ -105,7 +105,7 @@ Structures.extend("GuildMember", (GuildMember) => {
       await MembersConfig.updateOne({
         _id: settings._id
       }, {
-        coins: (settings.bankCoins+amount).toPrecision(4)
+        bankCoins: (settings.bankCoins+amount).toPrecision(4)
       });
     }
 
