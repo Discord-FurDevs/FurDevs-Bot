@@ -5,6 +5,7 @@ const BotSettings = require("./../../settings.json");
 exports.run = async (client, message, args) => {
   await message.delete();
 
+
   if(!args[0]) {
     const embed = new MessageEmbed()
     .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true }))
