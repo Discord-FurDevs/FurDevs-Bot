@@ -5,9 +5,12 @@ const { MessageEmbed } = require("discord.js");
 exports.run = async (client, message, args) => {
   await message.delete();
   if(!args[0]){
-    throw new Error("Please specify a user by providing the name, mention, or userID of that user ")
+    throw new Error("Please specify a user by providing the name, mention, or userID of that user.");
   }
   const user = await usernameResolver(message, args[0]);
+  if (user.id === message.author.id) {
+    throw new Error("You gonna rep yourself somehow?");
+  }
   const settings = await message.guild.members.cache.get(user.id).settings();
   let newReps = settings.reps+ 1
   console.log(newReps)
