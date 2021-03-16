@@ -1,5 +1,6 @@
 const { Client, Collection, Structures } = require("discord.js");
 const chalk = require("chalk");
+const enmap = require("enmap");
 const { readdirSync } = require("fs");
 require("dotenv").config();
 require("./structures/Guild");
@@ -16,7 +17,7 @@ client.fdevsLog = `${chalk.cyanBright("[FurDevs - Log]")}`;
 client.fdevsError = `${chalk.redBright("[FurDevs - Error]")}`;
 client.fwebsLog = `${chalk.greenBright("[FurDevs Web - Log]")}`;
 
-const client.theonlydbcharcanunderstand = new require("enmap")({name: "enmap"});
+client.theonlydbcharcanunderstand = new enmap({name: "enmap"});
 
 const mongoose = require("mongoose");
 
