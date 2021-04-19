@@ -5,7 +5,7 @@ require("dotenv").config();
 require("./structures/Guild");
 require("./structures/User");
 require("./structures/GuildMember");
-
+const enmap = require('enmap')
 const client = new Client({ disableMentions: "everyone" });
 const { load } = require("./utils/utils");
 client.commands = new Collection();
@@ -16,7 +16,7 @@ client.fdevsLog = `${chalk.cyanBright("[FurDevs - Log]")}`;
 client.fdevsError = `${chalk.redBright("[FurDevs - Error]")}`;
 client.fwebsLog = `${chalk.greenBright("[FurDevs Web - Log]")}`;
 
-const client.theonlydbcharcanunderstand = new require("enmap")({name: "enmap"});
+const client.theonlydbcharcanunderstand = new enmap({name: "enmap"});
 
 const mongoose = require("mongoose");
 
