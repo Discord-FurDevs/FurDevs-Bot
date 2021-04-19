@@ -69,7 +69,7 @@ exports.run = async (client) => {
 	// Gets the People with the administrations roles
 	app.get('/administrators', async(req, res) => {
 		const arrayOfAdmins = []
-		message.guild.roles.cache.get('731523466020520019').members.map(member => arrayOfAdmins.push(member.user.id))
+		client.guild.cache.get('731520035717251142').roles.cache.get('731523466020520019').members.map(member => arrayOfAdmins.push(member.user.id))
 		const arrayOfObjectsOfAdmins = []
 		arrayOfAdmins.forEach(admin => {
 			const newObject = {}
