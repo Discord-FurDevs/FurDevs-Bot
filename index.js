@@ -16,7 +16,7 @@ client.fdevsLog = `${chalk.cyanBright("[FurDevs - Log]")}`;
 client.fdevsError = `${chalk.redBright("[FurDevs - Error]")}`;
 client.fwebsLog = `${chalk.greenBright("[FurDevs Web - Log]")}`;
 
-const client.theonlydbcharcanunderstand = new enmap({name: "enmap"});
+client.theonlydbcharcanunderstand = new enmap({name: "enmap"});
 
 const mongoose = require("mongoose");
 
