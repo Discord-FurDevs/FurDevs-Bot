@@ -8,6 +8,7 @@ require("./structures/GuildMember");
 const enmap = require('enmap')
 const client = new Client({ disableMentions: "everyone" });
 const { load } = require("./utils/utils");
+const enmap = require('enmap');
 client.commands = new Collection();
 client.aliases = new Collection();
 
