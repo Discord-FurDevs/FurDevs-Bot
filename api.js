@@ -66,23 +66,12 @@ exports.run = async (client) => {
 	  })
 	})
 
-	// Gets the People with the administrations roles
-	app.get('/administrators', async(req, res) => {
-		const arrayOfAdmins = []
-		client.guild.cache.get('731520035717251142').roles.cache.get('731523466020520019').members.map(member => arrayOfAdmins.push(member.user.id))
-		const arrayOfObjectsOfAdmins = []
-		arrayOfAdmins.forEach(admin => {
-			const newObject = {}
-			newObject.name = client.users.cache.get(admin).username
-			newObject.tag = client.users.cache.get(admin).tag
-			newObject.imageURL = client.users.cache.get(admin).displayAvatarURL({ dynamic: true })
-			arrayOfObjectsOfAdmins.push(newObject)
-		})
-		res.json({
-			admins: arrayOfAdmins,
-			adminData: arrayOfObjectsOfAdmins
-		})
-
+	// How many members furdevs has
+	app.get('totalMembers', (req, res) => {
+	    let size = await client.guilds.cache.get('731520035717251142').memberCount
+	    res.json({
+	    	"memberCount": size;
+	    })
 	})
 
 	// Handle Coins API Requests
