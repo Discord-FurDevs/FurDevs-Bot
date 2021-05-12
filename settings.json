@@ -5,7 +5,7 @@
     "errorLogChannel": "789637133878296576",
     "welcomeChannel": "",
     "verificationLogs":"742414095957098631",
-    "APIPort": 80,
+    "APIPort": 3909,
     "currency": "Fur",
     "coinDropProbability": {"10": 2, "9": 4, "8": 5, "7": 7, "6": 9, "5": 11, "4": 13, "3": 15, "2": 16, "1": 18}
 }

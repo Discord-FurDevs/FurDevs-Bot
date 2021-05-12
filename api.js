@@ -66,6 +66,14 @@ exports.run = async (client) => {
 	  })
 	})
 
+	// How many members furdevs has
+	app.get('totalMembers', (req, res) => {
+	    let size = await client.guilds.cache.get('731520035717251142').memberCount
+	    res.json({
+	    	"memberCount": size;
+	    })
+	})
+
 	// Handle Coins API Requests
 	app.get('/coins', async (req, res) => {
 	  let target = await client.guilds.cache.get('731520035717251142').members.cache.get(req.param('userid'))
