@@ -31,9 +31,7 @@ exports.run = async (client, message, args) => {
         const guildSettings = await message.guild.settings();
         let member = message.guild.members.cache.get(vMember.id);
         if(member.roles.cache.has(guildSettings.verificationRole)) throw new Error("But the User is already verified **DUMMY**")
-        if(message.author.id === "679145795714416661" && !args[1]){
-            throw new Error("Drago! I'm not verifying the user until you give me the loglink\n\nTip use `?loglink`")
-        }
+    
         if (guildSettings.verificationRole) {
             await member.roles.add(
                 guildSettings.verificationRole,
@@ -44,7 +42,7 @@ exports.run = async (client, message, args) => {
             );
             if (welcomeChannel != "") {
 
-                var wc = await message.guild.channels.cache.get(welcomeChannel)
+                var wc = await message.guild.channels.cache.get(731523552636829697)
                 wc.send(`[ <@&789620311107567646> ]
 
 Salutations and welcome to **FurDevs**, ${member}!
@@ -61,9 +59,7 @@ __Other than that, have fun and again, we welcome you in behalf of everyone! DM 
                     "The Welcome Channel does not exist! Please add that to the settings."
                 )
             }
-            if(args[1]){
-                client.channels.cache.get(verificationLogs).send(`Verified By - ${message.author}\n${args[1]}`)
-            }
+            
             return true;
         } else {
             throw new Error(
